@@ -2,25 +2,25 @@ import React from 'react';
 import Card from './Card'
 import './List.css';
 
-
-
-
-function List(props) {
-
-    console.log(props)
-    //const lists = props.store.lists.map(i => <List cardInfo={i}/>)
-    const cards = props.cardInfo.cardIds.map(i => <Card stuff={i}/>)
-
-    return(
-        <section className="List">
-            <header className="List-header">
-                {props.cardInfo.header}
+class List extends React.Component {
+    render() {
+        console.log(this.props.cards)
+        return (
+            <section className="List">
+                <header className="List-header">
+                    <h2>{this.props.header}</h2>
+                </header>
                 <div className="List-cards">
-                {cards}
+                {this.props.cards.map(cards => (
+                    <Card
+                        title={cards.title}
+                        content={cards.content}
+                    />
+                    ))}
                 </div>
-            </header>
-        </section>
-    )
+            </section>
+        )
+    }
 }
 
 export default List;
